@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+header {
+  background: #333;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+/* Main layout (sidebar + iframe) */
+#main {
+  flex: 1;
+  display: flex;
+  height: 100%;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 220px;
+  background: #f4f4f4;
+  border-right: 1px solid #ddd;
+  padding: 1em;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+#sidebar li {
+  margin: 0.5em 0;
+}
+#sidebar a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 0.5em;
+  border-radius: 4px;
+}
+#sidebar a:hover {
+  background: #ddd;
+}
+#sidebar a.active {
+  background: #333;
+  color: white;
+  font-weight: bold;
+}
+
+/* Content */
+#content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Project header */
+#project-header {
+  padding: 0.75em 1em;
+  background: #eee;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.1em;
+}
+#project-header a {
+  margin-left: 1em;
+  font-size: 0.9em;
+  color: #0066cc;
+  text-decoration: none;
+}
+#project-header a:hover {
+  text-decoration: underline;
+}
+
+/* Iframe */
+#project-frame {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
