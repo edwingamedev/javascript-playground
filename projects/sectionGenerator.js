@@ -4,19 +4,20 @@ fetch("projects/indexer.json")
     const list = document.getElementById("project-list");
     const frame = document.getElementById("project-frame");
     const header = document.getElementById("project-header");
-
-    projects.forEach((project, index) => {
+    const baseUrl =
+      "https://github.com/edwingamedev/javascript-playground/tree/main";
+    projects.forEach((name) => {
       const li = document.createElement("li");
       const link = document.createElement("a");
 
       link.href = "#";
-      link.textContent = project.name;
+      link.textContent = name;
 
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        frame.src = `projects/${project.name.replace(/\s+/g, "")}/index.html`;
-        header.innerHTML = `${project.name} 
-              <a href="${project.url}" target="_blank">Source Code</a>`;
+        frame.src = `projects/${name}`;
+        header.innerHTML = `${name}
+              <a href="${baseUrl}/${name}" target="_blank">&ltSource Code&gt</a>`;
 
         // Remove 'active' from all links
         document

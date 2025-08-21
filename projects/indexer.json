@@ -1,26 +1,7 @@
 [
-  {
-    "name": "BinaryTree",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/BinaryTree"
-  },
-  {
-    "name": "Minesweeper",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/Minesweeper"
-  },
-  {
-    "name": "Starfield",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/Starfield"
-  },
-  {
-    "name": "Tetris",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/Tetris"
-  },
-  {
-    "name": "Snake",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/Snake"
-  },
-  {
-    "name": "BouncingBalls",
-    "url": "https://github.com/edwingamedev/javascript-playground/tree/main/BouncingBalls"
-  }
+"BinaryTree", 
+"Minesweeper", 
+"Starfield", "Tetris", 
+"Snake", 
+"BouncingBalls"
 ]
