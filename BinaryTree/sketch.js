@@ -14,8 +14,6 @@ function setup() {
     tree.addValue(number);
   }
 
-  numbersString
-
   bottomSection();
 
   tree.traverse();
