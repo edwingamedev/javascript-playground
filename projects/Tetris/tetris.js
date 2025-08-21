@@ -6,7 +6,7 @@ let dropCounter = 0;
 let dropInterval = 1000;
 let lastTime = 0;
 
-const arena = createMatrix(12, 20);
+const arena = createMatrix(12, 20); 
 
 const player = {
   pos: { x: 0, y: 0 },
@@ -15,7 +15,7 @@ const player = {
 };
 
 const pieces = "TJLOSZI";
-
+const backgroundColor = "#1e1e1e";
 const colors = [
   null,
   "#FF0D72",
@@ -148,7 +148,7 @@ function drawMatrix(matrix, offset) {
 }
 
 function draw() {
-  context.fillStyle = "#111";
+  context.fillStyle = backgroundColor;
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   drawMatrix(arena, { x: 0, y: 0 });
@@ -202,7 +202,6 @@ function playerMove(offset) {
 }
   
 function playerReset() {
-
   player.matrix = createPiece(pieces[(pieces.length * Math.random()) | 0]);
   player.pos.y = 0;
   player.pos.x =
@@ -244,7 +243,7 @@ function update(time = 0) {
 }
 
 function updateScore() {
-  document.getElementById("score").innerText = player.score;
+  document.getElementById("score").innerText = "SCORE: " + player.score;
 }
 
 playerReset();
