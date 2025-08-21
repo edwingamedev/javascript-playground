@@ -14,8 +14,8 @@ function Cell(i, j, w) {
   this.revealed = false;
 }
 
-const cellBackground = [50, 100, 255];
-const bombColor = [50, 50, 105];
+const cellBackground = "#3264ffff";
+const bombColor = "#323269ff";
 
 Cell.prototype.show = function () {
   stroke(25);
