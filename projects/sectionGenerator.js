@@ -5,7 +5,7 @@ fetch("projects/indexer.json")
     const frame = document.getElementById("project-frame");
     const header = document.getElementById("project-header");
     const baseUrl =
-      "https://github.com/edwingamedev/javascript-playground/tree/main";
+      "https://github.com/edwingamedev/javascript-playground/tree/release/projects";
     projects.forEach((name) => {
       const li = document.createElement("li");
       const link = document.createElement("a");
