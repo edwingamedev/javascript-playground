@@ -1,7 +1,9 @@
 [
 "BinaryTree", 
 "Minesweeper", 
-"Starfield", "Tetris", 
+"Starfield", 
+"ScrollingText",
+"Tetris", 
 "Snake", 
 "BouncingBalls"
 ]
