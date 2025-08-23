@@ -3,7 +3,7 @@ var cols;
 var rows;
 var w = 40;
 var totalBombs = 20;
-
+var isGameOver = false;
 const colorBlue = [100, 200, 255];
 
 function make2DArray(cols, rows) {
@@ -17,7 +17,11 @@ function make2DArray(cols, rows) {
 
 function setup() {
   createCanvas(601, 601);
+  InitGame();
+}
 
+function InitGame(){
+  isGameOver = false;
   cols = floor(width / w);
   rows = floor(height / w);
 
@@ -64,10 +68,16 @@ function gameOver() {
       grid[i][j].reveal();
     }
   }
+  isGameOver = true;
 }
 
 function mousePressed() {
   background(100, 200, 255);
+
+  if(isGameOver){
+    InitGame();
+    return;
+  }
 
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
