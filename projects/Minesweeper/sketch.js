@@ -6,18 +6,19 @@ var totalBombs = 20;
 var isGameOver = false;
 const colorBlue = [100, 200, 255];
 
-function make2DArray(cols, rows) {
-  var arr = new Array(cols);
-  for (var i = 0; i < arr.length; i++) {
-    arr[i] = new Array(rows);
-  }
-
-  return arr;
-}
-
 function setup() {
   createCanvas(601, 601);
   InitGame();
+}
+
+function draw() {
+  background(100, 200, 255);
+
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j].show();
+    }
+  }
 }
 
 function InitGame(){
@@ -62,6 +63,15 @@ function InitGame(){
   }
 }
 
+function make2DArray(cols, rows) {
+  var arr = new Array(cols);
+  for (var i = 0; i < arr.length; i++) {
+    arr[i] = new Array(rows);
+  }
+
+  return arr;
+}
+
 function gameOver() {
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
@@ -72,32 +82,28 @@ function gameOver() {
 }
 
 function mousePressed() {
-  background(100, 200, 255);
-
-  if(isGameOver){
+  if (isGameOver) {
     InitGame();
     return;
   }
 
-  for (var i = 0; i < cols; i++) {
-    for (var j = 0; j < rows; j++) {
-      if (grid[i][j].contains(mouseX, mouseY)) {
-        grid[i][j].reveal();
+  let pos = getInputPosition();
+  let i = floor(pos.x / w);
+  let j = floor(pos.y / w);
 
-        if (grid[i][j].bomb) {
-          gameOver();
-        }
-      }
+  if (i >= 0 && i < cols && j >= 0 && j < rows) {
+    let cell = grid[i][j];
+    cell.reveal();
+
+    if (cell.bomb) {
+      gameOver();
     }
   }
 }
 
-function draw() {
-  background(100, 200, 255);
-
-  for (var i = 0; i < cols; i++) {
-    for (var j = 0; j < rows; j++) {
-      grid[i][j].show();
-    }
+function getInputPosition() {
+  if (touches.length > 0) {
+    return { x: touches[0].x, y: touches[0].y };
   }
+  return { x: mouseX, y: mouseY };
 }

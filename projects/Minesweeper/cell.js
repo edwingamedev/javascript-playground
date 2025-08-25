@@ -22,31 +22,44 @@ Cell.prototype.show = function () {
   noFill();
   rect(this.x, this.y, this.w, this.w);
 
-  if (this.revealed) {
-    if (this.bomb) {
-      rect(this.x, this.y, this.w, this.w);
-      fill(bombColor);
-      ellipse(
-        this.x + this.displacement,
-        this.y + this.displacement,
-        this.displacement
-      );
-    } else {
-      fill(cellBackground);
-      rect(this.x, this.y, this.w, this.w);
-      if (this.neighborCount > 0) {
-        textAlign(CENTER);
-        textSize(20);
-        fill(255);
-        text(
-          this.neighborCount,
-          this.x + this.displacement,
-          this.y + this.displacement + 8
-        );
-      }
-    }
+  if (!this.revealed) {
+    return;
   }
+
+  if (this.bomb) {
+    _drawBomb(this);
+    return;
+  }
+
+  _drawCell(this);
 };
+
+function _drawCell(cell) {
+  fill(cellBackground);
+  rect(cell.x, cell.y, cell.w, cell.w);
+
+  // display number
+  if (cell.neighborCount > 0) {
+    textAlign(CENTER);
+    textSize(20);
+    fill(255);
+    text(
+      cell.neighborCount,
+      cell.x + cell.displacement,
+      cell.y + cell.displacement + 8
+    );
+  }
+}
+
+function _drawBomb(cell) {
+  rect(cell.x, cell.y, cell.w, cell.w);
+  fill(bombColor);
+  ellipse(
+    cell.x + cell.displacement,
+    cell.y + cell.displacement,
+    cell.displacement
+  );
+}
 
 Cell.prototype.countBombs = function () {
   if (this.bomb) {
@@ -72,30 +85,26 @@ Cell.prototype.countBombs = function () {
   this.neighborCount = total;
 };
 
-Cell.prototype.contains = function (x, y) {
-  return x > this.x && x < this.x + this.w && y > this.y && y < this.y + this.w;
-};
-
 Cell.prototype.reveal = function () {
   this.revealed = true;
 
   if (this.neighborCount == 0) {
-    // floor fill
-    this.floorFill();
+    // flood fill
+    this.floodFill();
   }
 };
 
-Cell.prototype.floorFill = function () {
+Cell.prototype.floodFill = function () {
   for (var xoff = -1; xoff <= 1; xoff++) {
     for (var yoff = -1; yoff <= 1; yoff++) {
       var i = this.i + xoff;
       var j = this.j + yoff;
       if (i > -1 && i < cols && j > -1 && j < rows) {
         var neighbor = grid[i][j];
-        if(!neighbor.bomb && !neighbor.revealed){
+        if (!neighbor.bomb && !neighbor.revealed) {
           neighbor.reveal();
         }
       }
     }
   }
-}
+};
