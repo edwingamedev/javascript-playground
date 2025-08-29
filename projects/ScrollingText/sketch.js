@@ -13,8 +13,8 @@ let canvasSize = 600;
 let starsSpeed = 0.1;
 
 function preload() {
-  txt = loadStrings("message.txt");
-  font = loadFont("cubicfive10_edit.ttf");
+  txt = loadStrings("/assets/message.txt");
+  font = loadFont("/assets/cubicfive10_edit.ttf");
 }
 
 function setup() {
