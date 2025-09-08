@@ -7,12 +7,14 @@ var N;
 var total;
 var path;
 var counter = 0;
-var orderSlide;
-var sliderText;
 var speed = 1;
-var sliderText2;
-var speedSlide;
 var redraw;
+
+var container;
+var orderSlide;
+var speedSlide;
+var orderText;
+var speedText;
 
 function Init() {
   order = orderSlide.value();
@@ -29,7 +31,7 @@ function Init() {
     path[i].add(len / 2, len / 2);
   }
 
-  sliderText.html("order: " + orderSlide.value());
+  orderText.html("order: " + orderSlide.value());
 
   setSpeed();
 }
@@ -37,34 +39,37 @@ function Init() {
 function setSpeed() {
   if (speedSlide.value() == speedSlide.elt.max) {
     speed = total;
-    sliderText2.html("instant");
+    speedText.html("instant");
     return;
   }
   speed = speedSlide.value();
-  sliderText2.html("speed:" + speed);
+  speedText.html("speed:" + speed);
 }
 
 function setup() {
   createCanvas(canvasSize, canvasSize);
   colorMode(HSB, 360, 255, 255);
 
+  container = createDiv();
+  container.style("display", "flex");
+  container.style("align-items", "center");
+  container.style("gap", "20px");
+
   // Order
   orderSlide = createSlider(1, 8, 4, 1);
-  orderSlide.position(0, height);
   orderSlide.input(Init);
-
-  sliderText = createSpan(orderSlide.value());
-  sliderText.position(orderSlide.x + orderSlide.width + 10, height);
+  orderText = createSpan(orderSlide.value());
 
   // Speed
   speedSlide = createSlider(1, 101, 1, 1);
-  speedSlide.position(sliderText.x + sliderText.width + 50, height);
-
   speedSlide.input(setSpeed);
+  speedText = createSpan(speedSlide.value());
+  speedText.html("speed:" + speed);
 
-  sliderText2 = createSpan(speedSlide.value());
-  sliderText2.position(speedSlide.x + speedSlide.width + 20, height);
-  sliderText2.html("speed:" + speed);
+  orderText.parent(container);
+  orderSlide.parent(container);
+  speedText.parent(container);
+  speedSlide.parent(container);
 
   stroke(255);
   strokeWeight(2);
