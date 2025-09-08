@@ -2,6 +2,7 @@ let factor = 100;
 let stars = [];
 let starSize = 5;
 let minStarHeight = 0;
+
 function CreateStars(amount) {
   for (let i = 0; i < amount; i++) {
     stars[i] = createVector(
